@@ -58,10 +58,10 @@ document.querySelector("#registerForm").addEventListener("submit", (e) => {
         password
     };
 
-     user.push(newUser)
+    user.push(newUser)
     localStorage.setItem("users", JSON.stringify(user))
 
-   
+
     console.log(newUser);
     alert("Registration completed successfully.")
     modal.style.display = "none";
@@ -81,9 +81,18 @@ document.querySelector("#formLogin").addEventListener("submit", (e) => {
     let foundUser = users.find(user => user.email === email && user.password === password)
 
     if (foundUser) {
-        window.location.href ="pages/test.html"
-    }else{
+        localStorage.setItem("isLoggedIn", "true");
+        localStorage.setItem("currentUser", JSON.stringify(foundUser));
+        window.location.href = "pages/login.html"
+    } else {
         alert("The email or password is incorrect or such user does not exist!")
     }
-
+   
 })
+
+
+let btnLogin = document.querySelector("#btnLogin")
+btnLogin.addEventListener("click", () => {
+    window.location.href = "pages/login.html"
+})
+

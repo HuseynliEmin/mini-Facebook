@@ -1,0 +1,77 @@
+:root {
+    --blue: #0866ff;
+    --border-color: #dddfe2;
+    --green: #42b72a
+
+}
+body {
+    background-color: #f2f4f7;
+
+}
+.profile {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 100px;
+}
+
+.profile-card {
+    background-color: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 20px;
+    width: 500px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    height: auto1;
+}
+
+.profile-card h2 {
+    color: var(--blue);
+    margin-bottom: 15px;
+    font-size: 32px;
+}
+
+.profile-card img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 2px solid var(--blue);
+}
+
+.profile-card p {
+    margin: 5px 0;
+    color: #333;
+    font-size: 24px;
+}
+
+ 
+#email {
+    color: var(--blue);
+}
+
+ 
+#password {
+    font-size: 24x;
+    color: var(--green);
+}
+#passwordChange{
+    margin-bottom: 10px;
+    font-size: 22px;
+    padding: 7px 18px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    color: white;
+    background-color: var(--blue);
+}
+.btn{
+    background-color: var(--green);
+    color: white;
+}
+.btn:hover{
+background-color: var(--blue);
+color: white;
+}
