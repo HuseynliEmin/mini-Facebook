@@ -8,6 +8,9 @@ body {
     background-color: #f2f4f7;
 
 }
+li,a,ul{
+    color: white;
+}
 .profile {
     display: flex;
     justify-content: center;

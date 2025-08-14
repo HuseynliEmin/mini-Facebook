@@ -16,3 +16,19 @@ body {
 .btn-search:hover{
     background-color: var(--green);
 }
+.btn{
+    background-color: var(--blue);
+    color: white;
+}
+.btn:hover{
+    background-color: #085de6;
+    color: white;
+}
+.post-list{
+    margin: auto;
+    width: 700px;
+    border: 1px solid var(--border-color);
+    padding: 30px;
+    border-radius: 5px;
+    background-color: white;
+}
