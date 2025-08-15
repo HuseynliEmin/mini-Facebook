@@ -38,50 +38,87 @@ let postsList = document.querySelector("#postsList")
 let sharePost = document.querySelector("#sharePost")
 
 let posts = JSON.parse(localStorage.getItem("posts")) || [];
-console.log(posts);
+let currentPostId = null; 
 
+function savePosts() {
+    localStorage.setItem("posts", JSON.stringify(posts));
+}
 
 sharePost.addEventListener("click", () => {
     let postContentValue = postContent.value.trim();
+    if (!postContentValue) return;
 
-    posts.unshift(postContentValue)
-    localStorage.setItem("posts", JSON.stringify(posts))
-    console.log(JSON.parse(localStorage.getItem("posts")));
-    renderPosts()
+    let newPost = {
+        id: Date.now() + Math.floor(Math.random() * 1000),
+        text: postContentValue,
+        comments: []
+    };
 
-})
+    posts.unshift(newPost);
+    savePosts();
+    renderPosts();
+    postContent.value = "";
+});
 
 function renderPosts() {
+    postsList.innerHTML = "";
+
     posts.forEach(post => {
-        postsList.innerHTML += `<div style="margin-bottom: 30px;">
-         <div style="margin-bottom: 40px; font-size: 23px;">
-         <img id='profileImage' style="border-radius:50%; width:41px; margin-right:11px;" src="${userData.profileImage}" alt='Profile Picture'>
-           ${userData.lastName} ${userData.firstName}
+        postsList.innerHTML += `
+        <div style="margin-bottom: 30px;">
+            <div style="margin-bottom: 40px; font-size: 23px;">
+                <img style="border-radius:50%; width:41px; margin-right:11px;" src="${userData.profileImage}" alt='Profile Picture'>
+                ${userData.lastName} ${userData.firstName}
+            </div>
+            <div>
+                <p>${post.text}</p>
+            </div>
+            <div>
+                <i class="fas fa-heart heart-icon" style="color:gray; cursor: pointer;"></i>
+                <i class="fas fa-comment comment-icon" 
+                   data-bs-toggle="modal" 
+                   data-bs-target="#staticBackdrop" 
+                   data-id="${post.id}" 
+                   style="color:gray; cursor: pointer; margin-left: 20px;"></i>
+            </div>
+            <div class="mt-2">
+                ${post.comments.map(c => `<p style="margin:0; font-size:14px; color:#555;">💬 ${c}</p>`).join("")}
+            </div>
         </div>
-        <div>
-            <p>${post}</p>
-        </div>
-        <div>
-            <i id="heart" style="color:gray ;cursor: pointer;" class="fas fa-heart"></i>
-            <i id="comment" style="color:gray; cursor: pointer; margin-left: 20px;" class="fas fa-comment"></i>
-        </div>
-        </div>
-        `
+        `;
+    });
+
+    // heart click
+    document.querySelectorAll(".heart-icon").forEach(icon => {
+        icon.addEventListener("click", () => {
+            icon.style.color = (icon.style.color === "gray") ? "red" : "gray";
+        });
+    });
+
+    // comment icon click
+    document.querySelectorAll(".comment-icon").forEach(icon => {
+        icon.addEventListener("click", () => {
+            currentPostId = icon.getAttribute("data-id");
+            commentInput.value = "";
+        });
     });
 }
-renderPosts()
 
-//liked icon
+renderPosts();
 
-let heart = document.querySelector("#heart")
+// comment share
+let commentInput = document.querySelector("#commentInput")
+let commentShare = document.querySelector("#commentShare")
 
-heart.addEventListener("click", () => {
-    if (heart.style.color == "gray") {
-        heart.style.color = "red"
+commentShare.addEventListener("click", () => {
+    let commentText = commentInput.value.trim();
+    if (!commentText || !currentPostId) return;
+
+    let post = posts.find(p => p.id == currentPostId);
+    if (post) {
+        post.comments.push(commentText);
+        savePosts();
+        renderPosts();
+        commentInput.value = "";
     }
-    else {
-        heart.style.color = " gray"
-    }
-})
-
- 
+});
