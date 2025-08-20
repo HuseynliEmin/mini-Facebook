@@ -35,3 +35,8 @@ body {
 .modal-backdrop {
     z-index: 0;
 }
+@media (max-width:768px) {
+    .post-list{
+        width: 100%;
+    }
+}

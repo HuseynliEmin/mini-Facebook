@@ -16,22 +16,30 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container-fluid">
-            <div class="d-flex">
-                <a class="navbar-brand" href="login.html">Mini Facebook</a>
-                <form class="d-flex mx-auto">
+
+            <a class="navbar-brand" href="login.html">Mini Facebook</a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <form class="d-flex mx-auto my-2 my-lg-0">
                     <input class="form-control me-2" type="search" placeholder="Search">
                 </form>
+
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="profile.html" id="profileBtn">Profile</a></li>
+                    <li class="nav-item"><a class="nav-link" href="login.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Messages</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" id="logoutBtn">Logout</a></li>
+                </ul>
             </div>
-            <ul class="navbar-nav">
-                <li></li>
-                <li></li>
-                <li class="nav-item"><a class="nav-link" href="profile.html" id="profileBtn">Profile</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Messages</a></li>
-                <li class="nav-item"><a class="nav-link" href="#" id="logoutBtn">Logout</a></li>
-            </ul>
+
         </div>
     </nav>
+
 
     <div class="card p-3 mb-4">
         <textarea id="postContent" class="form-control mb-2" rows="3" placeholder="what do you think?"></textarea>
@@ -50,7 +58,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                <input id="commentInput" type="text" placeholder=" Write a review.">
+                    <input id="commentInput" type="text" placeholder=" Write a review.">
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

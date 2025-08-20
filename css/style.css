@@ -156,3 +156,24 @@ body {
     font-size: 27px;
     cursor: pointer;
 }
+
+@media (max-width:1169px) {
+    .homePage{
+        flex-direction: column;
+        gap: 50px;
+        text-align: center;
+    }
+}
+@media (max-width:516px) {
+    .homePage h1{
+       font-size: 51px;
+       
+    }
+    .homePage h3{
+        font-size: 28px;
+        width: 100%;
+    }
+    .login{
+        width: 100%;
+    }
+}
